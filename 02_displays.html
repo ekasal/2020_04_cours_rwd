@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        p{
+            background-color: gold;
+        }
+        div{
+            background-color: tomato;
+            /* pour eviter le débordement de la marge (margin collapsing) des 1er et dernier enfants de section */
+            /*border: 1px black solid;*/
+            padding: 1px;
+            width: 60%;
+            text-align: center;
+            margin: 0 auto;
+            min-width: 260px;
+            max-width: 1000px;
+        }
+        section{
+            background-color: royalblue;
+            margin: 20px 0;
+        }
+        a{
+            background-color: cadetblue;
+            /*padding-top: 100px;
+            padding-bottom: 20px;*/
+            /*line-height: 2;*/ /* surtout pas d'unité de valeur, 2 veut dire 2 fois la font-size du a lui-même */
+            padding: 8px;
+            display: inline-block;
+        }
+        img{
+            width: 400px;
+            vertical-align: bottom; /* à la place du baseline par défaut */
+        }
+        article{
+            background-color: floralwhite;
+        }
+        article strong{
+            background-color: orchid;
+            width: 140px;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        article strong:nth-child(1){
+            height: 120px;
+        }
+        article strong:nth-child(2){
+            height: 200px;
+        }
+        article strong:nth-child(3){
+            height: 300px;
+        }
+        article strong:nth-child(4){
+            height: 350px;
+        }
+
+        .maListe1{
+            background-color: lightseagreen;
+            margin: 0;
+            padding: 0;
+            list-style-type: disc; /* par défaut */
+            /*list-style-type: circle;
+            list-style-type: square;
+            list-style-image: url("images/correct.svg");
+            list-style-position: inside;*/
+            list-style: none;
+            text-align: right;
+            /* astuce (etape 1) pour supprimer l'espace de caractère entre les enfants inline-block */
+            font-size: 0;
+        }
+        .maListe1 li {
+            border: 2px indianred solid;
+            /* display: list-item; par défaut*/
+           /* display: block;*/ /* le li perd sa puce */
+            display: inline-block;
+            padding: 10px;
+
+            /* astuce (etape 2) pour supprimer l'espace de caractère entre les enfants inline-block, ici on récupère la fon t-size de body */
+            font-size: 1rem;
+        }
+
+
+        .maListe2{
+            background-color: gold;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex; /* transforme les enfants en flex-items et les affiche sur la ligne (flex-direction: row; par défaut) */
+            /*flex-direction: row-reverse;*/
+            /*flex-direction: column;*/
+            /*flex-direction: column-reverse;*/
+             height: 600px;
+            /*justify-content: flex-start; par défaut = text-align: left */
+            /*justify-content: flex-end;*/  /* équivalent à text-align: right sur un display:block; */
+            /*justify-content: center;*/  /* équivalent à text-align: center sur un display:block; */
+            /*justify-content: space-between;*/ /* pas d'équivalent avec text-align:  répartition des enfants flex-item dans l'axe principal */
+            justify-content: space-around; /* pas d'équivalent avec text-align:  répartition des enfants flex-item dans l'axe principal avec de l'espace avant et après les 1er et derniers flex-items (comme si on avait du padding-left et paddingright sur le parent ul) */
+           /* justify-content: center;*/
+            /*align-items: stretch; par défaut les flex-items remplissent toute la hauteur sur l'axe secondaire */
+            /* align-items: flex-start;*/ /* au début de l'axe secondaire */
+            /* align-items: flex-end;*/ /* à la fin de l'axe secondaire */
+             align-items: center; /* au milieu de l'axe secondaire */
+        }
+        .maListe2 li {
+            border: 2px deeppink solid;
+            padding: 10px;
+            /*margin: auto; équivalement à justify-content: space-around; ET  align-items: center; donné dans le parent flex */
+        }
+    </style>
+</head>
+<body>
+
+<!--p*2(lorem)-->
+
+<!--
+
+Les éléments en display: block; s'affichent verticalement les uns sous les autres.
+L'espace qui les séparent c'est de la margin.
+Margin collapsing css : les marges verticales fusionnent entre elles au profit de la plus haute.
+width: 100% par défaut
+
+propriétés du modèle de boite CSS :
+- width
+- height
+- padding
+- border
+- margin
+
+-->
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at earum laudantium nisi quas quod <a href="#">faux lien 1</a> ratione ullam vitae
+    voluptatem! Accusantium eius esse laborum nesciunt pariatur praesentium quam quasi sit voluptas.</p>
+<p>A accusamus alias atque cupiditate delectus dicta dignissimos dolor eaque enim expedita facere facilis fuga fugit id
+    maxime minima minus nam nihil perspiciatis quas, quia sed sit vitae, voluptate voluptatem.</p>
+<!-- div>section{section $}*3 -->
+<div>
+    <section>section 1</section>
+    <section>section 2</section>
+    <section>section 3</section>
+</div>
+
+
+<!-- a[#]{faux lien $}*2 -->
+<!--
+Les éléments inline ont une width:auto; et son placés sur la baseline.
+Les éléments inline ne peuvent pas recevoir :
+- de width
+- de height
+- margin top ni bottom, ni auto
+- comportement spécial avec les paddings verticaux
+
+Ok pour la line-height
+Ok pour le vertical-align
+-->
+<!--
+Les éléments inline-block ont les même propriétés d'affichage sur la baseline que les inline mais on peurt leur donner tout le modèle de boite CSS
+- width
+- height
+- padding
+- border
+- margin
+-->
+
+<a href="#">faux lien 1</a>
+<a href="#">faux lien 2</a>
+<img src="http://placekitten.com/280/140" alt="Image alt text">
+<img src="http://placekitten.com/280/140" alt="Image alt text">
+
+<!--article>strong{gras $}*4-->
+<article>
+    <strong>gras 1</strong>
+    <strong>gras 2</strong>
+    <strong>gras 3</strong>
+    <strong>gras 4</strong>
+</article>
+
+<!--div>article*3-->
+<!--ul>li{item $}*4-->
+<ul class="maListe1">
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+    <li>item 4</li>
+</ul>
+
+<ul class="maListe2">
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+    <li>item 4</li>
+</ul>
+</body>
+</html>

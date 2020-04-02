@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        *, *::before, *::after{
+            /* la width représente la taille totale de la boite, qu'on ait des paddings et border ou pas */
+            box-sizing: border-box;
+        }
+        p{
+            background-color: orange;
+            width: 400px;
+            padding: 20px;
+            border: 5px tomato solid;
+            margin: 100px;
+        }
+        p:before{
+            content: 'fausse balise';
+            background-color: gold;
+            width: 60px;
+            padding: 10px;
+            display: inline-block;
+            float:left;;
+            margin-left: -70px
+        }
+    </style>
+</head>
+<body>
+<!--p*3(lorem)-->
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aut culpa debitis earum eum explicabo hic labore
+    nobis, nostrum odit, placeat quod recusandae reiciendis repellendus sit tenetur veritatis voluptatem
+    voluptatibus?</p>
+
+</body>
+</html>
